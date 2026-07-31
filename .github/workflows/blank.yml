@@ -2,7 +2,7 @@ name: Build Android APK
 
 on:
   push:
-    branches: [ "main", "master" ]
+    branches: [ "main", "master", "ana" ]
   workflow_dispatch:
 
 jobs:
@@ -16,7 +16,7 @@ jobs:
     - name: Java Kur
       uses: actions/setup-java@v4
       with:
-        distribution: 'zulu'
+        distribution: 'temurin'
         java-version: '17'
 
     - name: Flutter Kur
@@ -24,14 +24,16 @@ jobs:
       with:
         channel: 'stable'
 
-    - name: Bağımlılıkları Yükle
-      run: flutter pub get
+    - name: Projeyi Bul ve APK Yap
+      run: |
+        PROJECT_DIR=$(dirname $(find . -name "pubspec.yaml" -not -path "*/.*" | head -n 1))
+        echo "Bulunan klasor: $PROJECT_DIR"
+        cd $PROJECT_DIR
+        flutter pub get
+        flutter build apk --release
 
-    - name: APK Derle
-      run: flutter build apk --release
-
-    - name: APK'yı Indirilebilir Yap
+    - name: APK Dosyasını Yükle
       uses: actions/upload-artifact@v4
       with:
-        name: uygulama-release-apk
-        path: build/app/outputs/flutter-apk/app-release.apk
+        name: uygulama-apk
+        path: "**/build/app/outputs/flutter-apk/app-release.apk"
