@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">LiveVibe</string>
+    <string name="sign_in_with_google">Google ile devam et</string>
+    <string name="sign_in_error">Giriş yapılamadı, tekrar deneyin</string>
+    <string name="profile_title">Profil</string>
+    <string name="edit_profile">Profili düzenle</string>
+    <string name="loading">Yükleniyor...</string>
+    <!-- ÖNEMLİ: Bu değeri Firebase Console > Proje Ayarları > Genel > Web İstemci Kimliğinden al -->
+    <string name="default_web_client_id" translatable="false">72412733416-bc9lgee2n0dq5h4lo2qot0qvc9jr8hnl.apps.googleusercontent.com</string>
+</resources>
